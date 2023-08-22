@@ -2,86 +2,92 @@
 
 == Working with Clusters and Cluster Lifecycle
 
-At a high level Cluster Lifecycle management is about creating, upgrading, and destroying and importing clusters in a multi cloud environment.
-
-In the demo console you will find that ACM from 4.7 onwards is now intergrated with the OpenShift Cosnole. 
-
-Please find your console located below: 
-
-{{ MASTER_URL }}
-
 If you navigate to `Local-cluster` then you should see the new ACM console when you select `All Clusters`.
 
 Once there you can proceed with the module.
 
 image::images/acm-images/RHACM_all_cluster.png[]
 
+In this enviroment you will noticed that you have 2 clusters already pre-build for you, 1 cluster named *development* is a Hosted Control Planes cluster hosted in AWS. You will also see a *local-cluster* this is your hub cluster just under management inside ACM
 
+image::images/acm-images/acm-clusters.png[]
 
+Feel Free to use this cluster as needed, you can also create aditional clusters, either traditional or HCP clusters.
 
+== Create a new OpenShift Hosted Control Plane cluster in AWS
 
+1. From the menu select *Infrastructure → Clusters*
+2. Click *Create Cluster*
 
-[start=1]
-1. Once you have logged in to ACM, Navigate to *Credentials menu* and then select *Add Credentials*
-
-
-image::images/acm-images/credentials.png[]
-
-image::images/acm-images/add_cred.png[]
-
-=== You will need to provide connection details:
-
-* Cloud Provider Credentials: Choose *Amazon Web Services* +
-
-image::images/acm-images/aws_cred.png[]
-
-### Screen 1: Basic Info
-
-* Credential Name:  `aws`
-* Namespace: `open-cluster-management`
-* Base DNS Domain:  This information is located on the demo console under the field *rhacm_aws_subdomain*. You can also find it on the creds page for this workshop under *Top level domain*.
-
-When copy and pasting this information, make sure you omit the dot on the url, for example it should read `sandbox1536.opentlc.com` not `.sandbox1536.opentlc.com`
-
-image::images/acm-images/cred_basicinfo.png[]
-
-[start=2]
-2. Click NEXT
-
-### Screen 2 Amazon Web Services
-
-* Access Key ID: This information is located on the creds page for the 
-demo console under the field *AWS_ACCESS_KEY_ID*
-
-* Secret Access Key ID: This information is located on the creds page 
-for the demo console under the field *AWS_SECRET_ACCESS_KEY*
-
-image::images/acm-images/screen2.png[]
+image::images/acm-images/create_cluster.png[]
 
 [start=3]
-3. Click NEXT - We don't need to configure a Proxy so we can skip this screen
+3. Select *Amazon Web services*
 
-* Click NEXT
-
-
-
-### Screen 4 Pull secret and SSH
-
-* Red Hat OpenShift pull secret:  https://cloud.redhat.com/openshift/install/pull-secret[Get the pull secret from cloud.redhat.com - RH login Required]
-
-image::images/acm-images/pull_secret.png[]
-
-* SSH private and public keys:  Use an existing key pair or https://docs.openshift.com/container-platform/4.9/installing/installing_aws/installing-aws-default.html#ssh-agent-using_installing-aws-default[generate a new ssh key]
-
-> Please note you might need *console.redhat.com* access to get these keys
+image::images/acm-images/aws_cluster.png[]
 
 [start=4]
-4. Click NEXT
+4. Select *Hosted*
 
-image::images/acm-images/screen4.png[]
+image::images/acm-images/standalone.png[]
 
 [start=5]
-5. Verify the information and click *ADD*
+5. Steps 1 through 3 have been completed for you. Copy the command on Step number 4 
+
+[start=46]
+6. Open a local terminal window and SSH to the Bastion host. Details for URL / login will be on the Workshop page on demo.redhat.com
+
+image::images/acm-images/bastion.png[]
+
+[start=7]
+7. Once SSH, copy the login information for your Hub cluster. Paste the command on your Bastion Host and Login 
+
+image::images/acm-images/login.png[]
+
+[start=8]
+8. Once logged in, navigate back to the OpenShift Console and Copy the information under the Step -4 / Create Cluster.
+
+image::images/acm-images/hosted.png[]
+
+It should look something like this:
+
+----
+# Set environment variables
+REGION="us-east-1"
+CLUSTER_NAME="example"
+SECRET_CREDS="example-aws-credential-secret"  # The credential name defined in step 2.
+NAMESPACE="example-namespace"  # $SECRET_CREDS needs to exist in $NAMESPACE.
+
+hypershift create cluster aws \
+  --name $CLUSTER_NAME \
+  --namespace $NAMESPACE \
+  --node-pool-replicas=3 \
+  --secret-creds $SECRET_CREDS \
+  --region $REGION
+----
+
+[start=9]
+9. Create a .sh script file on the Bastion Host VM with the following variables
+
+----
+REGION="us-west-2"
+CLUSTER_NAME="yourownclustername"
+SECRET_CREDS="aws-credentials"
+NAMESPACE="local-cluster"
+----
+
+[start=10]
+10. Verify that you are logged in the Hub Cluster and execute the .sh file
+
+image::images/acm-images/terminal.png[]
+
+*One running this will take about 15-20 minutes depending on AWS current traffic*
+
+[start=11]
+11. Navigate back to the OpenShift Console and verify that the cluster is not sitting on *waiting to import* state.
+
+*Please note that you might have to import this cluster manually even after is finished in order for ACM to manage it.*
+
 
 == Create a new OpenShift cluster in AWS
 

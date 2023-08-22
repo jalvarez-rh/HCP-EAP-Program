@@ -34,7 +34,9 @@ image::images/acm-images/standalone.png[]
 [start=5]
 5. Steps 1 through 3 have been completed for you. Copy the command on Step number 4 
 
-[start=46]
+image::images/acm-images/hosted.png[]
+
+[start=6]
 6. Open a local terminal window and SSH to the Bastion host. Details for URL / login will be on the Workshop page on demo.redhat.com
 
 image::images/acm-images/bastion.png[]

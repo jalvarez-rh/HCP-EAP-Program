@@ -1,4 +1,4 @@
-== Introduction
+= Introduction
 
 This Red Hat Product Demo System catalog item allows you to use, demonstrate and learn OpenShift clusters using *Hosted Control Planes* 
 

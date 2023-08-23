@@ -1,0 +1,50 @@
+== Introduction
+
+This Red Hat Product Demo System catalog item allows you to use, demonstrate and learn OpenShift clusters using *Hosted Control Planes* 
+
+Using hosted control planes is a way to deploy the Control Plane of Red Hat OpenShift Container Platform clusters as pods on other clusters dramatically decreasing the time it takes to provision a new cluster. Worker nodes are still deployed as virtual machines and managed using the new `Machine.cluster.x-k8s.io/v1beta1` API.
+
+Hosted control planes are currently in Tech Preview on Red Hat Advanced Cluster Management for Kubernetes version 2.8.
+
+The catalog item deploys the following environment::
+
+* OpenShift Container Platform 4.13.
+* Red Hat Advanced Cluster Management for Kubernetes (RHACM) 2.8 installed and configured.
+* Technology preview for HyperShift enabled and configured on RHACM.
+* A small "development" cluster has been pre-deployed using hosted control planes.
+
+The instructions cover the following scenarios:
+
+* Introduction (this document)
+* https://github.com/jalvarez-rh/HCP-EAP-Program/blob/main/acm-instructions.adoc[Working with the Environment]
+
+== Documentation
+
+Further documentation about enabling, configuring and using hosted control planes can be found at the following link:
+
+* RHACM 2.8: https://access.redhat.com/documentation/en-us/red_hat_advanced_cluster_management_for_kubernetes/2.8/html/clusters/cluster_mce_overview#hosted-control-planes-intro
+
+== Information you will need
+
+We will provide the following information for you to get started during the on-boarding call.
+
+|===
+|Console URL|Provided During On-boarding
+|Cluster admin user|Provided During On-boarding
+|Cluster admin password|Provided During On-boarding
+|Bastion SSH URL|Provided During On-boarding
+|Bastion SSH User|Provided During On-boarding
+|Bastion SSH password|Provided During On-boarding
+|===
+
+Make note of the following information:
+
+* The SSH command to connect to you environment's bastion's VM
+* The password to be used with user `lab-user` on the bastion VM
+* Also the OpenShift console URL along with the credentials for the `admin` user.
+
+== Next steps
+
+This concludes the introduction section of this lab. 
+
+Follow https://github.com/jalvarez-rh/HCP-EAP-Program/blob/main/acm-instructions.adoc[Working with the Environment] to explore what has been pre-deployed for you.

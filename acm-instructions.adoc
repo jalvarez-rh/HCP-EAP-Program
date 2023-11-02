@@ -56,18 +56,20 @@ It should look something like this:
 ----
 # Set environment variables
 REGION="example"
-CLUSTER_NAME="example"
-SECRET_CREDS="example-aws-credential-secret" 
+CLUSTER_NAME="yourownclustername"
+SECRET_CREDS="aws-credentials" 
 NAMESPACE="example-namespace"  # $SECRET_CREDS needs to exist in $NAMESPACE.
 INFRA_ID="example"
+RELEASE_IMAGE="example"
 
 hypershift create cluster aws \
   --name $CLUSTER_NAME \
   --namespace $NAMESPACE \
   --node-pool-replicas=3 \
   --secret-creds $SECRET_CREDS \
-  --region $REGION
-  --infra_id $INFRA_ID 
+  --region $REGION \
+  --infra-id $INFRA_ID \
+  --release-image $RELEASE_IMAGE \
 ----
 
 [start=9]
@@ -78,7 +80,8 @@ REGION="us-west-2" # if you are outisde of the US use your local AWS region
 CLUSTER_NAME="yourownclustername"
 SECRET_CREDS="aws-credentials"
 NAMESPACE="local-cluster"
-INFRA_ID="HCP"
+INFRA_ID="hosted"
+RELEASE_IMAGE="quay.io/openshift-release-dev/ocp-release:4.13.12-x86_64"
 ----
 
 [start=10]

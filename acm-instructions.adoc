@@ -55,7 +55,7 @@ It should look something like this:
 
 ----
 # Set environment variables
-REGION="example"
+REGION="example" # if you are outisde of the US use your local AWS region 
 CLUSTER_NAME="yourownclustername"
 SECRET_CREDS="aws-credentials" 
 NAMESPACE="example-namespace"  # $SECRET_CREDS needs to exist in $NAMESPACE.
@@ -76,7 +76,7 @@ hypershift create cluster aws \
 9. Create a .sh script file on the Bastion Host VM with the following variables
 
 ----
-REGION="us-west-2" # if you are outisde of the US use your local AWS region 
+REGION="us-west-2" 
 CLUSTER_NAME="yourownclustername"
 SECRET_CREDS="aws-credentials"
 NAMESPACE="local-cluster"

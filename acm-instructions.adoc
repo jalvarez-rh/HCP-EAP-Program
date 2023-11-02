@@ -59,8 +59,7 @@ REGION="example"
 CLUSTER_NAME="example"
 SECRET_CREDS="example-aws-credential-secret" 
 NAMESPACE="example-namespace"  # $SECRET_CREDS needs to exist in $NAMESPACE.
-INFRA-ID="example"
-RELEASE-IMAGE="example"
+INFRA_ID="example"
 
 hypershift create cluster aws \
   --name $CLUSTER_NAME \
@@ -68,9 +67,8 @@ hypershift create cluster aws \
   --node-pool-replicas=3 \
   --secret-creds $SECRET_CREDS \
   --region $REGION
-  --infra-id $INFRA_ID 
-  --release-image $RELEASE-IMAGE
-----
+  --infra_id $INFRA_ID 
+ ----
 
 [start=9]
 9. Create a .sh script file on the Bastion Host VM with the following variables
@@ -80,8 +78,7 @@ REGION="us-west-2" # if you are outisde of the US use your local AWS region
 CLUSTER_NAME="yourownclustername"
 SECRET_CREDS="aws-credentials"
 NAMESPACE="local-cluster"
-INFRA-ID="hosted-control"
-RELEASE-IMAGE="quay.io/openshift-release-dev/ocp-release:4.13.4-x86_64"
+INFRA_ID="HCP"
 ----
 
 [start=10]

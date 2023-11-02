@@ -55,7 +55,7 @@ It should look something like this:
 
 ----
 # Set environment variables
-REGION="us-east-1"
+REGION="example"
 CLUSTER_NAME="example"
 SECRET_CREDS="example-aws-credential-secret" 
 NAMESPACE="example-namespace"  # $SECRET_CREDS needs to exist in $NAMESPACE.

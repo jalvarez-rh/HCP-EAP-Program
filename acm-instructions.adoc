@@ -68,7 +68,7 @@ hypershift create cluster aws \
   --secret-creds $SECRET_CREDS \
   --region $REGION
   --infra_id $INFRA_ID 
- ----
+----
 
 [start=9]
 9. Create a .sh script file on the Bastion Host VM with the following variables

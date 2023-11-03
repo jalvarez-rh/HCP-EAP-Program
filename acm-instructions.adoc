@@ -81,7 +81,7 @@ CLUSTER_NAME="yourownclustername"
 SECRET_CREDS="aws-credentials"
 NAMESPACE="local-cluster"
 INFRA_ID="hosted"
-RELEASE_IMAGE="quay.io/openshift-release-dev/ocp-release:4.13.12-x86_64"
+RELEASE_IMAGE="quay.io/openshift-release-dev/ocp-release:4.13.19-x86_64"
 ----
 
 [start=10]
